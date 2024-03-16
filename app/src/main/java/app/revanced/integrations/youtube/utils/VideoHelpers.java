@@ -34,6 +34,7 @@ public class VideoHelpers {
      * Injection point.
      */
     public static String qualityAutoString = "Auto";
+    private static volatile boolean isPiPAvailable = true;
 
     public static String currentQuality = "";
 
@@ -98,9 +99,11 @@ public class VideoHelpers {
             return;
         }
 
+        isPiPAvailable = false;
         startDownloaderActivity(context, isActivityContext, downloaderPackageName, 
                 String.format(isPlaylistDownload ? "https://youtu.be/playlist?list=%s": "https://youtu.be/%s", videoId)
         );
+        ReVancedUtils.runOnMainThreadDelayed(() -> isPiPAvailable = true, 500L);
     }
 
     @NonNull
@@ -180,6 +183,10 @@ public class VideoHelpers {
 
     public static float getCurrentSpeed() {
         return currentSpeed;
+    }
+
+    public static boolean isPiPAvailable(boolean original) {
+        return original && isPiPAvailable;
     }
 
     public static int getCurrentQuality(int original) {
