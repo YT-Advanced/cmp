@@ -1,3 +1,10 @@
+## [0.146.3](https://github.com/YT-Advanced/cmp/compare/v0.146.2...v0.146.3) (2024-03-16)
+
+
+### Bug Fixes
+
+* Pip ([eb6b055](https://github.com/YT-Advanced/cmp/commit/eb6b055c1859cab0ca4abc3387a27bf9bb5bd083))
+
 ## [0.146.2](https://github.com/YT-Advanced/ReX-integrations/compare/v0.146.1...v0.146.2) (2024-03-14)
 
 
