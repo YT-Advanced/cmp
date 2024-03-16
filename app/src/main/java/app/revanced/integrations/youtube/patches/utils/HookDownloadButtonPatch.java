@@ -28,10 +28,10 @@ public class HookDownloadButtonPatch {
         boolean isActivityContext = true;
         if (context == null) {
             // Utils context is the application context, and not an activity context.
-            context = Utils.getContext();
+            context = ReVancedUtils.getContext();
             isActivityContext = false;
         }
-        download(getContext(), isActivityContext, id, false);
+        download(context, isActivityContext, id, false);
     }
 
     /**
