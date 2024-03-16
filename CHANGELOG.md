@@ -1,3 +1,10 @@
+## [0.146.5](https://github.com/YT-Advanced/cmp/compare/v0.146.4...v0.146.5) (2024-03-16)
+
+
+### Bug Fixes
+
+* PiP ([285eb18](https://github.com/YT-Advanced/cmp/commit/285eb1877613c6513f29fa498ecaf3727cf56b68))
+
 ## [0.146.4](https://github.com/YT-Advanced/cmp/compare/v0.146.3...v0.146.4) (2024-03-16)
 
 
