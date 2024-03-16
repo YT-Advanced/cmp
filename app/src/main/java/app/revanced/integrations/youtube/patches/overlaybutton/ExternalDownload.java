@@ -35,7 +35,7 @@ public class ExternalDownload {
             isButtonEnabled = setValue();
             ImageView imageView = findView(constraintLayout, "external_download_button");
 
-            imageView.setOnClickListener(view -> VideoHelpers.download(view.getContext()));
+            imageView.setOnClickListener(view -> VideoHelpers.download(view.getContext(), true));
             buttonView = new WeakReference<>(imageView);
 
             fadeDurationFast = integer("fade_duration_fast");
