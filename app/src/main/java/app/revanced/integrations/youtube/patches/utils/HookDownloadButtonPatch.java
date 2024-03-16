@@ -21,13 +21,19 @@ public class HookDownloadButtonPatch {
         activityRef = new WeakReference<>(mainActivity);
     }
 
-    private static Context getContext() {
+    private static void performDownload(@Nullable String id, boolean isPlaylist) {
         // If possible, use the main activity as the context.
         // Otherwise fall back on using the application context.
         Context context = activityRef.get();
-        return (context == null) ? ReVancedUtils.getContext() : context;
+        boolean isActivityContext = true;
+        if (context == null) {
+            // Utils context is the application context, and not an activity context.
+            context = Utils.getContext();
+            isActivityContext = false;
+        }
+        download(getContext(), isActivityContext, id, false);
     }
-    
+
     /**
      * Injection point.
      *
@@ -37,7 +43,7 @@ public class HookDownloadButtonPatch {
         if (videoId == null || !SettingsEnum.HOOK_DOWNLOAD_BUTTON.getBoolean())
             return false;
         
-        download(getContext(), videoId, false);
+        performDownload(videoId, false);
         return true;
     }
 
@@ -49,7 +55,7 @@ public class HookDownloadButtonPatch {
     public static boolean startPlaylistDownloadActivity(@Nullable String playlistId) {
         if (playlistId == null || !SettingsEnum.HOOK_DOWNLOAD_BUTTON.getBoolean())
             return false;
-        download(getContext(), playlistId, true);
+        performDownload(playlistId, true);
         return true;
     }
 }
