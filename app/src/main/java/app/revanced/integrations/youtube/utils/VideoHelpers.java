@@ -36,6 +36,8 @@ public class VideoHelpers {
     public static String qualityAutoString = "Auto";
     private static volatile boolean isPiPAvailable = true;
 
+    private static boolean isPlaylistToggleOn = true;
+
     public static String currentQuality = "";
 
     /**
@@ -136,11 +138,11 @@ public class VideoHelpers {
     }
 
     public static void playlistFromChannelVideosListener(@NonNull Context context, boolean activated) {
-        String baseUri = "vnd.youtube://" + VideoInformation.getVideoId() + "?start=" + VideoInformation.getVideoTime() / 1000;
-        if (activated) {
-            baseUri += "&list=UL" + VideoInformation.getVideoId();
+        String baseUri = String.format("vnd.youtube://%s?start=%d", VideoInformation.getVideoId(), VideoInformation.getVideoTime() / 1000);
+        if (isPlaylistToggleOn) {
+            baseUri += "&list=" + (activated ? "UL" : "RD") + VideoInformation.getVideoId();
         }
-
+        isPlaylistToggleOn = !isPlaylistToggleOn;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(baseUri));
         context.startActivity(intent);
     }
